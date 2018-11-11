@@ -25,7 +25,7 @@ public class Crawler implements Runnable {
         Fetcher fetcher = new Fetcher(url, crawlerConfig);
         Document doc = fetcher.fetchData();
         if (doc == null) return;
-        Parser parser = new Parser(doc, crawlerConfig);
+        Parser parser = new Parser(webCrawler, crawlerConfig, doc);
         this.webPage = parser.getWebPage();
         frontier.addListUrl(this.webPage.getWebUrls());
         // Doing something with page crawled, this function is implemented by user

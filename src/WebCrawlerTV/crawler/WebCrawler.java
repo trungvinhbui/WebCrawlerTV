@@ -2,6 +2,7 @@ package WebCrawlerTV.crawler;
 
 import WebCrawlerTV.parser.WebPage;
 import WebCrawlerTV.url.WebUrl;
+import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 
@@ -40,4 +41,6 @@ public abstract class WebCrawler {
     public void setCrawlerConfig(CrawlerConfig crawlerConfig) {
         this.crawlerConfig = crawlerConfig;
     }
+
+    public abstract boolean shouldVisit(WebUrl url);
 }

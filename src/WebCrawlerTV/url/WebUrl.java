@@ -2,6 +2,7 @@ package WebCrawlerTV.url;
 
 public class WebUrl implements Comparable<WebUrl> {
     private String url;
+    private String domain;
     private WebUrl parent;
     private int depth;
 
@@ -38,5 +39,13 @@ public class WebUrl implements Comparable<WebUrl> {
     @Override
     public int compareTo(WebUrl webUrl) {
         return url.compareTo(webUrl.url);
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 }

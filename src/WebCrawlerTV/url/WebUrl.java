@@ -1,11 +1,11 @@
 package WebCrawlerTV.url;
 
-public class WebUrl {
+public class WebUrl implements Comparable<WebUrl> {
     private String url;
     private WebUrl parent;
     private int depth;
 
-    public WebUrl(){
+    public WebUrl() {
         this.url = "";
         this.parent = null;
         this.depth = 0;
@@ -33,5 +33,10 @@ public class WebUrl {
 
     public void setDepth(int depth) {
         this.depth = depth;
+    }
+
+    @Override
+    public int compareTo(WebUrl webUrl) {
+        return url.compareTo(webUrl.url);
     }
 }

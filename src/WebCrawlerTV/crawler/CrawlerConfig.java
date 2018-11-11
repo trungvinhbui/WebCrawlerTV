@@ -5,6 +5,9 @@ public class CrawlerConfig {
     private int numberOfCrawlers = 10;
     private boolean isFetchMedia = false;
     private boolean isFollowRobotstxt = false;
+    private int timeWaitFinish = 10000; // ms
+    private int timeWaitGetWebUrl = 10000; // ms
+    private boolean isFollowRedirect = true;
 
     public CrawlerConfig() {
     }
@@ -39,5 +42,29 @@ public class CrawlerConfig {
 
     public void setFollowRobotstxt(boolean followRobotstxt) {
         isFollowRobotstxt = followRobotstxt;
+    }
+
+    public int getTimeWaitFinish() {
+        return timeWaitFinish;
+    }
+
+    public void setTimeWaitFinish(int timeWaitFinish) {
+        this.timeWaitFinish = timeWaitFinish;
+    }
+
+    public int getTimeWaitGetWebUrl() {
+        return timeWaitGetWebUrl;
+    }
+
+    public void setTimeWaitGetWebUrl(int timeWaitGetWebUrl) {
+        this.timeWaitGetWebUrl = timeWaitGetWebUrl;
+    }
+
+    public boolean isFollowRedirect() {
+        return isFollowRedirect;
+    }
+
+    public void setFollowRedirect(boolean isFollowRedirect) {
+        this.isFollowRedirect = isFollowRedirect;
     }
 }

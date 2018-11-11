@@ -16,7 +16,7 @@ public class Frontier {
 
     public WebUrl getNextUrl() {
         WebUrl url = workingQueue.poll();
-        long timeoutExpiredMs = System.currentTimeMillis() + 10000;
+        long timeoutExpiredMs = System.currentTimeMillis() + crawlerConfig.getTimeWaitGetWebUrl();
         while (url == null) {
             long waitMs = timeoutExpiredMs - System.currentTimeMillis();
             if (waitMs <= 0) {
@@ -25,29 +25,20 @@ public class Frontier {
             url = workingQueue.poll();
         }
         return url;
-//        WebUrl url = workingQueue.poll();
-//        return url;
     }
 
-    public boolean addNewUrl(WebUrl url) {
-        if (workingQueue.isExist(url)) {
-            return false;
-        } else {
-            workingQueue.push(url);
-            return true;
-        }
+    public void addNewUrl(WebUrl url) {
+        workingQueue.push(url);
     }
 
     public void addListUrl(ArrayList<WebUrl> webUrls) {
         for (WebUrl url : webUrls) {
-            if (!workingQueue.isExist(url)) {
-                workingQueue.push(url);
-            }
+            workingQueue.push(url);
         }
     }
 
     public boolean isFinish() {
-        long timeoutExpiredMs = System.currentTimeMillis() + 5000;
+        long timeoutExpiredMs = System.currentTimeMillis() + crawlerConfig.getTimeWaitFinish();
         while (workingQueue.isEmpty()) {
             long waitMs = timeoutExpiredMs - System.currentTimeMillis();
             if (waitMs <= 0) {

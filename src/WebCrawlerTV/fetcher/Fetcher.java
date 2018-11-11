@@ -9,18 +9,19 @@ import java.io.IOException;
 
 public class Fetcher {
     private WebUrl url;
-    CrawlerConfig config;
+    CrawlerConfig crawlerConfig;
 
-    public Fetcher(WebUrl url, CrawlerConfig config) {
+    public Fetcher(WebUrl url, CrawlerConfig crawlerConfig) {
         this.url = url;
-        this.config = config;
+        this.crawlerConfig = crawlerConfig;
     }
 
     public Document fetchData() {
         Document doc;
         try {
-            doc = Jsoup.connect(this.url.getUrl()).get();
+            doc = Jsoup.connect(this.url.getUrl()).followRedirects(crawlerConfig.isFollowRedirect()).get();
         } catch (IOException e) {
+            System.out.println(this.url.getUrl());
             e.printStackTrace();
             return null;
         }
